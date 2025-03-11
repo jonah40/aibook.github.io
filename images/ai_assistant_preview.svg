@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="414" height="896" viewBox="0 0 414 896" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景 -->
+    <rect width="414" height="896" fill="#ffffff"/>
+    
+    <!-- 状态栏 -->
+    <rect width="414" height="44" fill="#4A6FFF"/>
+    
+    <!-- 头部 -->
+    <rect y="44" width="414" height="60" fill="#4A6FFF"/>
+    <text x="20" y="80" font-family="PingFang SC, Microsoft YaHei" font-size="18" fill="white">AI助手</text>
+    
+    <!-- 对话区域 -->
+    <rect x="20" y="124" width="280" height="80" rx="20" fill="#f5f7fa"/>
+    <text x="40" y="170" font-family="PingFang SC, Microsoft YaHei" font-size="14" fill="#666">您好，我是您的智能记账助手</text>
+    
+    <rect x="114" y="224" width="280" height="80" rx="20" fill="#4A6FFF"/>
+    <text x="134" y="270" font-family="PingFang SC, Microsoft YaHei" font-size="14" fill="white">帮我记录一笔午餐支出，25元</text>
+    
+    <rect x="20" y="324" width="280" height="120" rx="20" fill="#f5f7fa"/>
+    <text x="40" y="354" font-family="PingFang SC, Microsoft YaHei" font-size="14" fill="#666">好的，我已为您记录：</text>
+    <text x="40" y="384" font-family="PingFang SC, Microsoft YaHei" font-size="14" fill="#333">类别：餐饮 - 午餐</text>
+    <text x="40" y="414" font-family="PingFang SC, Microsoft YaHei" font-size="14" fill="#333">金额：¥25.00</text>
+    
+    <!-- 输入框 -->
+    <rect x="20" y="816" width="314" height="50" rx="25" fill="#f5f7fa"/>
+    <text x="40" y="847" font-family="PingFang SC, Microsoft YaHei" font-size="14" fill="#999">输入您的问题...</text>
+    
+    <!-- 发送按钮 -->
+    <circle cx="374" cy="841" r="25" fill="#4A6FFF"/>
+    <path d="M364,841 L374,831 L384,841 L374,851 Z" fill="white"/>
+</svg>

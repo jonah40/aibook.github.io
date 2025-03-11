@@ -1,1 +1,279 @@
-<li><p>在接触信息之前，先停下来评估自己的情感反应，并思考分享这些信息的人或组织的动机。</p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI自动记账APP原型</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .prototype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .prototype-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .prototype-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+        .prototype-header {
+            padding: 15px;
+            background: #4A6FFF;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .prototype-header i {
+            margin-right: 8px;
+        }
+        .prototype-content {
+            padding: 20px;
+            height: 450px;
+            overflow: auto;
+        }
+        .prototype-footer {
+            padding: 10px 15px;
+            background: #f9f9f9;
+            font-size: 14px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        .section-title {
+            font-size: 24px;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4A6FFF;
+            color: #333;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #4A6FFF;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #3A5FEF;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .navigation a {
+            margin: 0 10px;
+            padding: 8px 16px;
+            background: #fff;
+            color: #4A6FFF;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .navigation a:hover {
+            background: #4A6FFF;
+            color: white;
+        }
+        .feature-list {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .feature-list h3 {
+            margin-bottom: 15px;
+            color: #4A6FFF;
+        }
+        .feature-list ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .feature-list li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #4A6FFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI自动记账APP原型设计</h1>
+            <p class="subtitle">智能、便捷的个人财务管理解决方案</p>
+        </header>
+
+        <div class="navigation">
+            <a href="index.html">概览</a>
+            <a href="dashboard.html">首页仪表盘</a>
+            <a href="transactions.html">交易记录</a>
+            <a href="analysis.html">支出分析</a>
+            <a href="budget.html">预算管理</a>
+            <a href="ai-assistant.html">AI助手</a>
+            <a href="settings.html">设置</a>
+            <a href="account.html">账户管理</a>
+        </div>
+
+        <div class="feature-list">
+            <h3><i class="fas fa-lightbulb"></i> AI记账APP核心功能</h3>
+            <ul>
+                <li><strong>智能识别交易</strong>：通过OCR技术自动识别票据、截图，或连接银行账户自动导入交易记录</li>
+                <li><strong>AI分类</strong>：智能识别交易类别，自动归类到相应的支出或收入类别</li>
+                <li><strong>语音记账</strong>：支持语音输入记账，AI自动理解并记录</li>
+                <li><strong>预算管理</strong>：设置各类别预算，实时监控支出情况</li>
+                <li><strong>数据分析</strong>：提供详细的支出分析报告，包括趋势图、饼图等可视化展示</li>
+                <li><strong>智能提醒</strong>：异常支出提醒、预算超支提醒、定期账单提醒</li>
+                <li><strong>财务建议</strong>：基于消费习惯提供个性化的省钱和理财建议</li>
+                <li><strong>多设备同步</strong>：数据云端同步，多设备无缝使用</li>
+                <li><strong>数据导出</strong>：支持多种格式导出财务数据</li>
+                <li><strong>安全保障</strong>：数据加密存储，生物识别登录保护</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">原型界面预览</h2>
+        <div class="prototype-grid">
+            <div class="prototype-item">
+                <div class="prototype-header">
+                    <span><i class="fas fa-home"></i> 首页仪表盘</span>
+                </div>
+                <div class="prototype-content">
+                    <img src="images/dashboard_preview.svg" alt="首页仪表盘预览" style="width:100%; height:auto;" onerror="this.src='images/placeholder.svg';">
+                </div>
+                <div class="prototype-footer">
+                    <a href="dashboard.html" class="btn">查看详情</a>
+                </div>
+            </div>
+
+            <div class="prototype-item">
+                <div class="prototype-header">
+                    <span><i class="fas fa-exchange-alt"></i> 交易记录</span>
+                </div>
+                <div class="prototype-content">
+                    <img src="images/transactions_preview.svg" alt="交易记录预览" style="width:100%; height:auto;" onerror="this.src='images/placeholder.svg';">
+                </div>
+                <div class="prototype-footer">
+                    <a href="transactions.html" class="btn">查看详情</a>
+                </div>
+            </div>
+
+            <div class="prototype-item">
+                <div class="prototype-header">
+                    <span><i class="fas fa-chart-pie"></i> 支出分析</span>
+                </div>
+                <div class="prototype-content">
+                    <img src="images/analysis_preview.svg" alt="支出分析预览" style="width:100%; height:auto;" onerror="this.src='images/placeholder.svg';">
+                </div>
+                <div class="prototype-footer">
+                    <a href="analysis.html" class="btn">查看详情</a>
+                </div>
+            </div>
+
+            <div class="prototype-item">
+                <div class="prototype-header">
+                    <span><i class="fas fa-wallet"></i> 预算管理</span>
+                </div>
+                <div class="prototype-content">
+                    <img src="images/budget_preview.svg" alt="预算管理预览" style="width:100%; height:auto;" onerror="this.src='images/placeholder.svg';">
+                </div>
+                <div class="prototype-footer">
+                    <a href="budget.html" class="btn">查看详情</a>
+                </div>
+            </div>
+
+            <div class="prototype-item">
+                <div class="prototype-header">
+                    <span><i class="fas fa-robot"></i> AI助手</span>
+                </div>
+                <div class="prototype-content">
+                    <img src="images/ai_assistant_preview.svg" alt="AI助手预览" style="width:100%; height:auto;" onerror="this.src='images/placeholder.svg';">
+                </div>
+                <div class="prototype-footer">
+                    <a href="ai-assistant.html" class="btn">查看详情</a>
+                </div>
+            </div>
+
+            <div class="prototype-item">
+                <div class="prototype-header">
+                    <span><i class="fas fa-cog"></i> 设置</span>
+                </div>
+                <div class="prototype-content">
+                    <img src="images/settings_preview.svg" alt="设置预览" style="width:100%; height:auto;" onerror="this.src='images/placeholder.svg';">
+                </div>
+                <div class="prototype-footer">
+                    <a href="settings.html" class="btn">查看详情</a>
+                </div>
+            </div>
+
+            <div class="prototype-item">
+                <div class="prototype-header">
+                    <span><i class="fas fa-user"></i> 账户管理</span>
+                </div>
+                <div class="prototype-content">
+                    <img src="images/account_preview.svg" alt="账户管理预览" style="width:100%; height:auto;" onerror="this.src='images/placeholder.svg';">
+                </div>
+                <div class="prototype-footer">
+                    <a href="account.html" class="btn">查看详情</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

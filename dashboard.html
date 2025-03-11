@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI自动记账APP - 首页仪表盘</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            max-width: 414px; /* 模拟手机屏幕宽度 */
+            height: 896px; /* 模拟手机屏幕高度 */
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .status-bar {
+            height: 44px;
+            background: #4A6FFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            color: white;
+            font-size: 14px;
+        }
+        .status-bar .time {
+            font-weight: bold;
+        }
+        .status-bar .icons i {
+            margin-left: 8px;
+        }
+        .header {
+            background: #4A6FFF;
+            color: white;
+            padding: 15px 20px 25px;
+            border-radius: 0 0 15px 15px;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .header-actions i {
+            font-size: 18px;
+            margin-left: 15px;
+        }
+        .balance-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        .balance-amount {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .balance-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        .balance-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .stat-amount {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            opacity: 0.8;
+            font-size: 12px;
+        }
+        .quick-actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 10px;
+            background: white;
+            border-radius: 15px;
+            margin-top: -10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 25%;
+        }
+        .action-icon {
+            width: 50px;
+            height: 50px;
+            background: #f0f5ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #4A6FFF;
+            font-size: 20px;
+        }
+        .action-label {
+            font-size: 12px;
+            color: #666;
+        }
+        .section {
+            padding: 20px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .section-action {
+            font-size: 14px;
+            color: #4A6FFF;
+        }
+        .budget-progress {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+        }
+        .budget-category {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .category-name {
+            display: flex;
+            align-items: center;
+        }
+        .category-icon {
+            width: 30px;
+            height: 30px;
+            background: #f0f5ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            color: #4A6FFF;
+        }
+        .category-amount {
+            font-weight: bold;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        .progress-fill.warning {
+            background: #FFC107;
+        }
+        .progress-fill.danger {
+            background: #FF5722;
+        }
+        .progress-fill.success {
+            background: #4CAF50;
+        }
+        .transactions {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+        .transaction-info {
+            display: flex;
+            align-items: center;
+        }
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            background: #f0f5ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 12px;
+            color: #4A6FFF;
+        }
+        .transaction-details {
+            display: flex;
+            flex-direction: column;
+        }
+        .transaction-name {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .transaction-date {
+            font-size: 12px;
+            color: #999;
+        }
+        .transaction-amount {
+            font-weight: bold;
+        }
+        .transaction-amount.expense {
+            color: #FF5722;
+        }
+        .transaction-amount.income {
+            color: #4CAF50;
+        }
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 20%;
+        }
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            color: #999;
+        }
+        .nav-label {
+            font-size: 12px;
+            color: #999;
+        }
+        .nav-item.active .nav-icon,
+        .nav-item.active .nav-label {
+            color: #4A6FFF;
+        }
+        .floating-button {
+            position: absolute;
+            bottom: 80px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #4A6FFF;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(74, 111, 255, 0.4);
+        }
+        .back-to-index {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-to-index"><i class="fas fa-arrow-left"></i> 返回概览</a>
+    
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="time">9:41</div>
+            <div class="icons">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+        
+        <!-- 头部区域 -->
+        <div class="header">
+            <div class="header-top">
+                <div class="header-title">首页</div>
+                <div class="header-actions">
+                    <i class="fas fa-bell"></i>
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+            
+            <div class="balance-card">
+                <div class="balance-label">本月结余</div>
+                <div class="balance-amount">¥3,245.68</div>
+                <div class="balance-stats">
+                    <div class="balance-stat">
+                        <div class="stat-amount">¥8,562.30</div>
+                        <div class="stat-label">收入</div>
+                    </div>
+                    <div class="balance-stat">
+                        <div class="stat-amount">¥5,316.62</div>
+                        <div class="stat-label">支出</div>
+                    </div>
+                    <div class="balance-stat">
+                        <div class="stat-amount">62%</div>
+                        <div class="stat-label">预算使用</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 快捷操作 -->
+        <div class="quick-actions">
+            <div class="action-item">
+                <div class="action-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <div class="action-label">扫票记账</div>
+            </div>
+            <div class="action-item">
+                <div class="action-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <div class="action-label">语音记账</div>
+            </div>
+            <div class="action-item">
+                <div class="action-icon">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <div class="action-label">手动记账</div>
+            </div>
+            <div class="action-item">
+                <div class="action-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <div class="action-label">同步账单</div>
+            </div>
+        </div>
+        
+        <!-- 预算进度 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">预算使用情况</div>
+                <div class="section-action">查看全部</div>
+            </div>
+            
+            <div class="budget-progress">
+                <div class="budget-category">
+                    <div class="category-name">
+                        <div class="category-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <span>餐饮</span>
+                    </div>
+                    <div class="category-amount">¥1,250 / ¥2,000</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill success" style="width: 62.5%"></div>
+                </div>
+            </div>
+            
+            <div class="budget-progress">
+                <div class="budget-category">
+                    <div class="category-name">
+                        <div class="category-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <span>购物</span>
+                    </div>
+                    <div class="category-amount">¥1,800 / ¥2,000</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill warning" style="width: 90%"></div>
+                </div>
+            </div>
+            
+            <div class="budget-progress">
+                <div class="budget-category">
+                    <div class="category-name">
+                        <div class="category-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <span>交通</span>
+                    </div>
+                    <div class="category-amount">¥850 / ¥800</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill danger" style="width: 106

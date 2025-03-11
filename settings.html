@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI自动记账APP - 设置</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            max-width: 414px; /* 模拟手机屏幕宽度 */
+            height: 896px; /* 模拟手机屏幕高度 */
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .status-bar {
+            height: 44px;
+            background: #4A6FFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            color: white;
+            font-size: 14px;
+        }
+        .status-bar .time {
+            font-weight: bold;
+        }
+        .status-bar .icons i {
+            margin-left: 8px;
+        }
+        .header {
+            background: #4A6FFF;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .header-actions i {
+            font-size: 18px;
+            margin-left: 15px;
+        }
+        .settings-container {
+            height: calc(100% - 104px);
+            overflow-y: auto;
+            padding-bottom: 60px;
+        }
+        .settings-group {
+            margin: 20px 0;
+        }
+        .settings-group-title {
+            padding: 0 20px 10px;
+            font-size: 14px;
+            color: #999;
+            font-weight: bold;
+        }
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: white;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+        .settings-item-left {
+            display: flex;
+            align-items: center;
+        }
+        .settings-icon {
+            width: 36px;
+            height: 36px;
+            background: #f0f5ff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: #4A6FFF;
+            font-size: 18px;
+        }
+        .settings-text {
+            font-size: 16px;
+        }
+        .settings-item-right {
+            display: flex;
+            align-items: center;
+            color: #999;
+        }
+        .settings-value {
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .settings-arrow {
+            font-size: 14px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4A6FFF;
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 20%;
+        }
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            color: #999;
+        }
+        .nav-label {
+            font-size: 12px;
+            color: #999;
+        }
+        .nav-item.active .nav-icon,
+        .nav-item.active .nav-label {
+            color: #4A6FFF;
+        }
+        .back-to-index {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-to-index"><i class="fas fa-arrow-left"></i> 返回概览</a>
+    
+    <div class="container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div class="time">9:41</div>
+            <div class="icons">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+        
+        <!-- 头部区域 -->
+        <div class="header">
+            <div class="header-title">设置</div>
+            <div class="header-actions">
+                <i class="fas fa-question-circle"></i>
+            </div>
+        </div>
+        
+        <!-- 设置内容 -->
+        <div class="settings-container">
+            <!-- 账户设置 -->
+            <div class="settings-group">
+                <div class="settings-group-title">账户</div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="settings-text">个人信息</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <div class="settings-value">张三</div>
+                        <div class="settings-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="settings-text">安全设置</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <div class="settings-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="settings-text">数据同步</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 通知设置 -->
+            <div class="settings-group">
+                <div class="settings-group-title">通知</div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="settings-text">推送通知</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="settings-text">预算提醒</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <div class="settings-value">80%</div>
+                        <div class="settings-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="settings-text">定期账单提醒</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI设置 -->
+            <div class="settings-group">
+                <div class="settings-group-title">AI功能</div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="settings-text">智能分类</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="settings-text">智能建议</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="settings-text">AI助手语音</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <div class="settings-value">女声</div>
+                        <div class="settings-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 其他设置 -->
+            <div class="settings-group">
+                <div class="settings-group-title">其他</div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="settings-text">主题设置</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <div class="settings-value">蓝色</div>
+                        <div class="settings-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <div class="settings-text">数据导出</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <div class="settings-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-item">
+                    <div class="settings-item-left">
+                        <div class="settings-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="settings-text">关于我们</div>
+                    </div>
+                    <div class="settings-item-right">
+                        <div class="settings-value">v1.0.0</div>
+                        <div class="settings-arrow">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 退出登录 -->
+            <div class="settings-item" style="margin-top: 30px; background: #f9f9f9;">
+                <div class="settings-item-left" style="width: 100%; justify-content: center;">
+                    <div class="settings-text" style="color: #FF5722;">退出登录</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="nav-label">首页</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="nav-label">交易</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <div class="nav-label">记账</div>
+            </div>
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <div class="nav-label">分析</div>
+            </div>
+            <div class="nav-item active">
+                <div class="nav-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="nav-label">设置</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

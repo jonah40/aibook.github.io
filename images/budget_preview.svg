@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="414" height="896" viewBox="0 0 414 896" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景 -->
+    <rect width="414" height="896" fill="#ffffff"/>
+    
+    <!-- 状态栏 -->
+    <rect width="414" height="44" fill="#4A6FFF"/>
+    
+    <!-- 头部 -->
+    <rect y="44" width="414" height="60" fill="#4A6FFF"/>
+    <text x="20" y="80" font-family="PingFang SC, Microsoft YaHei" font-size="18" fill="white">预算管理</text>
+    
+    <!-- 月度预算卡片 -->
+    <rect x="20" y="124" width="374" height="120" rx="8" fill="#f5f7fa"/>
+    <text x="40" y="154" font-family="PingFang SC, Microsoft YaHei" font-size="14" fill="#666">本月预算</text>
+    <text x="40" y="190" font-family="PingFang SC, Microsoft YaHei" font-size="24" fill="#333">¥6,000.00</text>
+    
+    <!-- 进度条 -->
+    <rect x="40" y="210" width="334" height="8" rx="4" fill="#e0e0e0"/>
+    <rect x="40" y="210" width="200" height="8" rx="4" fill="#4A6FFF"/>
+    <text x="40" y="230" font-family="PingFang SC, Microsoft YaHei" font-size="12" fill="#999">已使用 60%</text>
+    
+    <!-- 分类预算列表 -->
+    <rect x="20" y="264" width="374" height="80" rx="8" fill="#f5f7fa"/>
+    <text x="40" y="300" font-family="PingFang SC, Microsoft YaHei" font-size="16" fill="#333">餐饮</text>
+    <text x="354" y="300" font-family="PingFang SC, Microsoft YaHei" font-size="16" fill="#333" text-anchor="end">¥2,000</text>
+    <rect x="40" y="320" width="314" height="4" rx="2" fill="#e0e0e0"/>
+    <rect x="40" y="320" width="220" height="4" rx="2" fill="#FF5722"/>
+    
+    <rect x="20" y="354" width="374" height="80" rx="8" fill="#f5f7fa"/>
+    <text x="40" y="390" font-family="PingFang SC, Microsoft YaHei" font-size="16" fill="#333">交通</text>
+    <text x="354" y="390" font-family="PingFang SC, Microsoft YaHei" font-size="16" fill="#333" text-anchor="end">¥1,000</text>
+    <rect x="40" y="410" width="314" height="4" rx="2" fill="#e0e0e0"/>
+    <rect x="40" y="410" width="157" height="4" rx="2" fill="#4A6FFF"/>
+    
+    <!-- 添加预算按钮 -->
+    <circle cx="374" cy="816" r="30" fill="#4A6FFF"/>
+    <text x="374" y="822" font-family="PingFang SC, Microsoft YaHei" font-size="24" fill="white" text-anchor="middle">+</text>
+</svg>
